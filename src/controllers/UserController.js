@@ -38,7 +38,8 @@ module.exports = {
                     const token = await generateJwt.generateJwt({user_id: user[0].user_id})
                     res.send({
                         token: token,
-                        user_id: user[0].user_id
+                        user_id: user[0].user_id,
+                        color: user[0].color
                     })
                 }
             }

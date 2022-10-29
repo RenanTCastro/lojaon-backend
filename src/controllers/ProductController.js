@@ -31,6 +31,7 @@ module.exports = {
 
     async getAllProducts(req,res, next){
         try{
+            console.log(req.body)
             const result = await knex('Product').where(req.params)
             return res.json(result)
         }catch (error){
