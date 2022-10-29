@@ -19,6 +19,8 @@ module.exports = {
     async login(req, res, next){
         try{
             const { email, password } = req.body
+            console.log(req.body)
+
             const user = await knex("User").where({email: email})
 
             if (!(email && password)) {
@@ -54,5 +56,14 @@ module.exports = {
         }
     },
 
+    async lojainfo(req,res, next){
+        try{
+            const user = await knex('User').where(req.params);
+            const {email, password, user_id, ...result} = user[0];
+            return res.json(result)
+        }catch (error){
+            next(error)
+        }
+    },
     
 }
