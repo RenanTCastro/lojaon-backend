@@ -31,8 +31,8 @@ module.exports = {
 
     async getAllProducts(req,res, next){
         try{
-            console.log(req.body)
-            const result = await knex('Product').where(req.params)
+            const filter = "%" + req.body.filter + "%";
+            const result = await knex('Product').where(req.params).andWhereILike("name", filter)
             return res.json(result)
         }catch (error){
             next(error)

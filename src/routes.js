@@ -15,7 +15,7 @@ routes.put('/editarPerfil/:user_id', UserController.editarPerfil);
 // Product routes
 routes.post('/addProduct', ProductController.addProduct);
 routes.get('/getProduct/:product_id', ProductController.getProduct);
-routes.get('/getAllProducts/:user_id', ProductController.getAllProducts);
+routes.post('/getAllProducts/:user_id', ProductController.getAllProducts);
 routes.get('/getOthersProducts/:user_id/:product_id', ProductController.getOthersProducts);
 routes.put('/editProduct/:product_id', ProductController.editProduct);
 routes.delete('/deleteProduct/:product_id', ProductController.deleteProduct);
