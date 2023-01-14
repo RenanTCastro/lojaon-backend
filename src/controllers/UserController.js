@@ -1,6 +1,7 @@
 const knex = require("../database")
 const bcrypt = require ("bcrypt")
 const generateJwt = require('../utils/jwt');
+const { get } = require("../routes");
 
 module.exports = {
     
@@ -50,6 +51,7 @@ module.exports = {
 
     async editarPerfil(req,res, next){
         try{
+            console.log(req.body)
             await knex("User").update(req.body).where(req.params);
             return res.status(201).send();
         }catch (error){
@@ -62,6 +64,18 @@ module.exports = {
             const user = await knex('User').where(req.params);
             const {email, password, user_id, ...result} = user[0];
             return res.json(result)
+        }catch (error){
+            next(error)
+        }
+    },
+
+    async validateEmail(req,res, next){
+        try{
+            const { email } = req.body
+            const getEmail = await knex("User").where({email: email})
+            const isNewEmail = getEmail.length ? true : false;
+            console.log(getEmail)
+            res.status(200).send(isNewEmail);
         }catch (error){
             next(error)
         }

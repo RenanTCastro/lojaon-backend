@@ -11,6 +11,7 @@ routes.post('/register', UserController.register);
 routes.get('/lojainfo/:user_id', UserController.lojainfo);
 routes.post('/login', UserController.login);
 routes.put('/editarPerfil/:user_id', UserController.editarPerfil);
+routes.post('/validateemail', UserController.validateEmail);
 
 // Product routes
 routes.post('/addProduct', ProductController.addProduct);
