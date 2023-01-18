@@ -29,12 +29,12 @@ module.exports = {
             }
 
             if(!user.length){
-                res.status(401).json({ error: "Não existe usuários com esse e-mail"})
+                res.status(401).json({ error: "E-mail não existe"})
             }else{
                 const isAuthenticated  = bcrypt.compareSync(password, user[0].password) 
                 
                 if(!isAuthenticated){
-                    res.status(401).json({ error: "Senha errada"})
+                    res.status(401).json({ error: "Senha incorreta"})
                 }else{
                     const token = await generateJwt.generateJwt({user_id: user[0].user_id})
                     res.send({
